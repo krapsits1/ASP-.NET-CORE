@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Assignments";
+}
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success text-center mt-4">
+        @TempData["Message"]
+    </div>
+}
+
+<h4>List of Assignments</h4>
+
+<a asp-action="Create" class="btn btn-success mt-2 mb-2">Add Assignment</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Course</th>
+            <th>Deadline</th>
+            <th>Action</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var assignment in Model)
+        {
+            <tr>
+                <td>@assignment.Description</td>
+                <td>@assignment.Course.Name</td>
+                <td>@assignment.Deadline</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@assignment.Id" class="btn btn-primary btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@assignment.Id" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

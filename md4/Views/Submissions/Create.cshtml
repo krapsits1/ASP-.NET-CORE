@@ -1,0 +1,35 @@
+﻿@model md4.Models.Submission
+@{
+    ViewData["Title"] = "Create Submission";
+}
+
+<h4>Create Submission</h4>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="AssignmentId"></label>
+        <select asp-for="AssignmentId" class="form-control" asp-items="@(new SelectList(ViewBag.Assignments, "Id", "Description"))"></select>
+        <span asp-validation-for="AssignmentId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="StudentId"></label>
+        <select asp-for="StudentId" class="form-control" asp-items="@(new SelectList(ViewBag.Students, "Id", "Name"))"></select>
+        <span asp-validation-for="StudentId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SubmissionTime"></label>
+        <input asp-for="SubmissionTime" class="form-control" />
+        <span asp-validation-for="SubmissionTime" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Score"></label>
+        <input asp-for="Score" class="form-control" />
+        <span asp-validation-for="Score" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Save</button>
+    <a asp-action="Index" class="btn btn-secondary mt-2">Cancel</a>
+</form>

@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Data OverView</h1>
+</div>
+
+<div class="my-4">
+    <form asp-action="CreateTestData" asp-controller="Home"  method="post">
+        <button type="submit" class="btn btn-primary px-4 py-2">Create Test Data</button>
+    </form>
+</div>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success text-center mt-4">
+        @TempData["Message"]
+    </div>
+}
+<h4>List of Teachers</h4>
+@foreach (var teacher in Model.Teachers)
+{
+    <div class="teacher-info align-items-inline">
+        <div class="teacher-field">
+            <span class="label">Name:</span> @teacher.Name
+            <span class="label">Surname:</span> @teacher.Surname
+            <span class="label">Gender:</span> @teacher.Gender
+            <span class="label">Contract Date:</span> @teacher.ContractDate.ToShortDateString()
+        </div>
+    </div>
+}
+
+<h4>List of Students</h4>
+@foreach (var student in Model.Students)
+{
+    <div class="student-info align-items-inline">
+        <div class="student-field">
+            <span class="label">Name:</span> @student.Name
+            <span class="label">Surname:</span> @student.Surname
+            <span class="label">Gender:</span> @student.Gender
+            <span class="label">Student ID Number:</span> @student.StudentIdNumber
+        </div>
+    </div>
+}
+
+<h4>List of Courses</h4>
+@foreach (var course in Model.Courses)
+{
+    <div class="course-info align-items-inline">
+        <div class="course-field">
+            <span class="label">Name:</span> @course.Name
+            <span class="label">Teacher:</span> @course.Teacher.Name
+        </div>
+    </div>
+}
+
+<h4>List of Assignments</h4>
+@foreach (var assignment in Model.Assignments)
+{
+    <div class="assignment-info align-items-inline">
+        <div class="assignment-field">
+            <span class="label">Deadline:</span> @assignment.Deadline.ToShortDateString()
+            <span class="label">Course:</span> @assignment.Course.Name
+            <span class="label">Description:</span> @assignment.Description
+        </div>
+    </div>
+}
+
+<h4>List of Submissions</h4>
+@foreach (var submission in Model.Submissions)
+{
+    <div class="submission-info align-items-inline">
+        <div class="submission-field">
+            <span class="label">Assignment Description:</span> @submission.Assignment.Description
+            <span class="label">Student Name:</span> @submission.Student.Name
+            <span class="label">Submission Time:</span> @submission.SubmissionTime.ToShortDateString()
+            <span class="label">Score:</span> @submission.Score
+        </div>
+    </div>
+}
+
+<style>
+    .label {
+        font-weight: bold;
+        color: #007bff;
+    }
+    h4{
+        padding-bottom:2px;
+    }
+</style>

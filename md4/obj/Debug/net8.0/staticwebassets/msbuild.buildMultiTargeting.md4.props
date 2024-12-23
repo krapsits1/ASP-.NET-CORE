@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\md4.props" />
+</Project>

@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "Teachers";
+}
+
+<h4>List of Teachers</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Gender</th>
+            <th>Contract Date</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var teacher in Model)
+        {
+            <tr>
+                <td>@teacher.Name</td>
+                <td>@teacher.Surname</td>
+                <td>@teacher.Gender</td>
+                <td>@teacher.ContractDate.ToShortDateString()</td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
